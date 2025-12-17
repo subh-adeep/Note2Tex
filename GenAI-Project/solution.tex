@@ -1,0 +1,244 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\begin{document}
+\title{Assignment Solutions}
+\author{AI Assistant}
+\date{\today}
+\maketitle
+
+\section{Problem 1}
+Directional filtering is used to emphasize or suppress frequency components along specific orientations in the frequency domain. For an \(M\times N\) centered Discrete Fourier Transform (DFT) spectrum, the angle of each frequency component relative to the center of the spectrum is given by:
+
+\[\theta(u,v)=\tan^{-1}\Biggl{(}\frac{v-\frac{N}{2}}{u-\frac{M}{2}}\Biggr{)}\]
+A directional filter \(H(u,v)\) can then be defined as:
+
+\[H(u,v;\theta_{\min},\theta_{\max})=\begin{cases}1,&\text{if }\theta_{\min}\leq \theta(u,v)\leq\theta_{\max}\\ 0,&\text{otherwise}\end{cases}\]
+
+Here, \(\theta_{\min}\) and \(\theta_{\max}\) specify the angular range of frequencies to be retained.
+
+\hrule\vspace{0.5cm}
+
+\subsection{$ Generate an image \(x\) of size \(M\times M\) (\(M=256\)) using three sinusoidal components: \[x_{1}(m,n) =\sin\Bigl{(}\frac{2\pi\cdot 12\,m}{M}\Bigr{)},\] \[x_{2}(m,n) =\sin\Bigl{(}\frac{2\pi\cdot 8\,n}{M}\Bigr{)},\] \[x_{3}(m,n) =\sin\Bigl{(}\frac{2\pi(6\,m+10\,n)}{M}\Bigr{)},\] \[x(m,n) =\frac{x_{1}(m,n)+x_{2}(m,n)+x_{3}(m,n)}{3}.\]
+        Compute the centered 2D DFT of \(x(m,n)\). Plot the results in a single figure showing: $}
+
+\hrule\vspace{0.5cm}
+
+\subsubsection{The image of the sinusoidal component \(x_{1}(m,n)\)}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{The image of the sinusoidal component \(x_{1}(m,n)\)}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsubsection{The image of the sinusoidal component \(x_{2}(m,n)\)}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{The image of the sinusoidal component \(x_{2}(m,n)\)}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsubsection{The image of the sinusoidal component \(x_{3}(m,n)\)}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{The image of the sinusoidal component \(x_{3}(m,n)\)}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsubsection{The combined image \(x(m,n)\)}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{The combined image \(x(m,n)\)}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsubsection{The magnitude of the 2D DFT of the combined image}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{The magnitude of the 2D DFT of the combined image}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsection{$ Design directional filters of size \(M\times M\) (\(M=256\)) for given angular ranges using the expression above. Apply each filter to the DFT of the combined image (\(X(u,v)\)) reconstruct the filtered images using the inverse DFT, visualize the results and comment on the observations. For each directional filter, display the following in a single figure: $}
+
+\hrule\vspace{0.5cm}
+
+\subsubsection{The original image.}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{The original image.}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsubsection{The original image magnitude spectrum.}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{The original image magnitude spectrum.}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsubsection{The directional filter magnitude spectrum.}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{The directional filter magnitude spectrum.}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsubsection{The filtered magnitude spectrum.}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{The filtered magnitude spectrum.}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsubsection{The reconstructed filtered image.}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{The reconstructed filtered image.}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsection{Compute the Mean Squared Error (MSE) between the original and each filtered output and comment on their values.}
+
+\textbf{Solution:}
+
+The Mean Squared Error (MSE) is a measure of the average squared difference between the original image $x$ and each reconstructed image $x_\text{recon}$. It is calculated as:
+
+$$\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (x_i - x_\text{recon, }i)^2$$
+
+where $n$ is the total number of pixels in the image, and $x_i$ and $x_\text{recon, }i$ are the $i^\text{th}$ pixels of the original and reconstructed images, respectively.
+
+In the given code, the `mse` function calculates the MSE between two images by subtracting the corresponding pixels, squaring the result, and taking the mean. The MSE is then computed for each reconstructed image in the `reconstructed_images` dictionary and stored in the `mse_results` dictionary with their respective names.
+
+The printed MSE values represent the difference between the original image and each reconstruction, with lower values indicating better reconstruction quality.
+
+\hrule\vspace{0.5cm}
+
+\section{Problem 1}
+**Gaussian Blurring and Inverse Filtering:**
+Gaussian blurring is a common technique to smooth an image and attenuate high-frequency components. A Gaussian kernel of size \(k\times k\) and standard deviation \(\sigma\) is defined as:
+
+\[G(x,y)=K\exp\Bigg{(}-\frac{x^{2}+y^{2}}{2\sigma^{2}}\Bigg{)},\quad\text{with \(K\( chosen such that }\sum_{x,y}G(x,y)=1\]
+
+\hrule\vspace{0.5cm}
+
+\subsection{$ Read the image buildings.jpg. Design a Gaussian kernel of size \(13\times 13\) with standard deviation \(\sigma=2.5\). Apply the blur in the frequency domain and reconstruct the blurred image using the inverse DFT. $}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{Read the image buildings.jpg. Design a Gaussian kernel of size \(13\times 13\) with standard devi...}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsection{For the Gaussian kernel compute and plot in a single figure and comment on your observations:}
+
+\hrule\vspace{0.5cm}
+
+\subsubsection{Its centered 2D DFT magnitude spectrum (13\(\times\)13-point DFT).}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{Its centered 2D DFT magnitude spectrum (13\(\times\)13-point DFT).}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsubsection{$ The inverse centered magnitude spectrum \(1/(|H(u,v)|+\epsilon)\), with \(\epsilon=10^{-3}\). $}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{The inverse centered magnitude spectrum \(1/(|H(u,v)|+\epsilon)\), with \(\epsilon=10^{-3}\).}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsubsection{The centered 2D DFT magnitude spectrum (1036\(\times\)1036-point DFT).}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{The centered 2D DFT magnitude spectrum (1036\(\times\)1036-point DFT).}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsubsection{The inverse centered magnitude spectrum \(1/(|H(u,v)|+\epsilon)\).}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{The inverse centered magnitude spectrum \(1/(|H(u,v)|+\epsilon)\).}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsection{Gaussian frequency response fit:}
+
+\hrule\vspace{0.5cm}
+
+\subsubsection{$ The frequency-domain representation of a Gaussian kernel can be modeled as: \[H_{\rm cont}(u,v)=\exp\Big{(}-k\,(U^{2}+V^{2})\Big{)},\quad U=u-\frac{M-1}{2}, \;V=v-\frac{N-1}{2}\] $}
+
+\textbf{Solution:}
+
+The frequency-domain representation of a Gaussian kernel, $H_{\rm cont}(u,v)$, is modeled as $\exp\Big{(}-k\,(U^{2}+V^{2})\Big{)}$, where $U=u-\frac{M-1}{2}$ and $V=v-\frac{N-1}{2}$. 
+
+In the given Python code, the `create_gaussian_kernel` function generates a 2D Gaussian kernel using NumPy, which is a common filter for image processing. The kernel is normalized by dividing it by its sum. 
+
+The `get_padded_dft` function pads the Gaussian kernel with zeros and computes its 2D Discrete Fourier Transform (DFT) using NumPy's Fast Fourier Transform (FFT) function. The kernel is first padded to the desired size, then shifted so its center is at $(0, 0)$ for the FFT computation. The function returns both uncentered and centered versions of the DFT.
+
+\hrule\vspace{0.5cm}
+
+\subsubsection{Sweep \(k\) over the range \(10^{-6}\) to \(10^{-3}\) and find the value that minimizes the error: \[\min_{k}\sum_{u,v}\Big{|}H_{\rm cont}(u,v)-|H_{\rm DFT}(u,v)|\Big{|}^{2}\]}
+
+\textbf{Solution:}
+
+The goal is to find the optimal value of $k$ that minimizes the sum of squared errors between the continuous Gaussian function $H_{\rm cont}(u,v)$ and the magnitude of the discrete Fourier transform $|H_{\rm DFT}(u,v)|$. 
+
+The continuous Gaussian function is defined as $H_{\rm cont}(u,v) = \exp(-k(u^2 + v^2))$. 
+
+To find the optimal $k$, we sweep over the range $10^{-6}$ to $10^{-3}$ and calculate the sum of squared errors for each $k$ using the formula $\sum_{u,v}|H_{\rm cont}(u,v)-|H_{\rm DFT}(u,v)||^2$. 
+
+The optimal $k$ is the one that minimizes this error. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{placeholder.png}
+\caption{Magnitude spectra of the optimal Gaussian fit and its inverse}
+\end{figure}
+
+\hrule\vspace{0.5cm}
+
+\subsubsection{Report the optimized \(k_{\rm opt}\) obtained from the previous sweep and plot in a single figure the magnitude spectrum of the Gaussian fit \(|H_{\rm cont}(u,v)|\) along with its inverse \(1/(|H_{\rm cont}(u,v)|+\epsilon)\).}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{Report the optimized \(k_{\rm opt}\) obtained from the previous sweep and plot in a single figure...}\n\end{figure}\n\nThe optimized $k_{\rm opt}$ is obtained by minimizing the sum of squared errors (SSE) between the target magnitude spectrum $H_{\rm target}$ and the generated Gaussian function $H_{\rm cont}$. This is achieved by sweeping over a range of $k$ values and selecting the one that results in the minimum error.
+
+The magnitude spectrum of the Gaussian fit $|H_{\rm cont}(u,v)|$ is given by $\exp(-k_{\rm opt} (u^2 + v^2))$, where $u$ and $v$ are the centered pixel indices of the frequency coordinate grids. The inverse of the Gaussian fit is given by $1/(|H_{\rm cont}(u,v)| + \epsilon)$, where $\epsilon$ is a small positive value.
+
+The resulting magnitude spectrum and its inverse are plotted in a single figure using a log scale, as shown below:
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{placeholder.png}
+\caption{Magnitude spectrum of the Gaussian fit $|H_{\rm cont}(u,v)|$ (left) and its inverse $1/(|H_{\rm cont}(u,v)| + \epsilon)$ (right) for the optimized $k_{\rm opt}$.}
+\end{figure}
+
+\hrule\vspace{0.5cm}
+
+\subsection{Restore the original image by applying the previously computed inverse responses (both from the direct kernel DFT and the Gaussian fit) and reconstruct the images using the inverse DFT. Plot in a single figure and compare:}
+
+\hrule\vspace{0.5cm}
+
+\subsubsection{The original image.}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{The original image.}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsubsection{The restored image using the direct kernel inverse response.}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{The restored image using the direct kernel inverse response.}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsubsection{The restored image using the Gaussian fit inverse response.}
+
+\textbf{Solution:}
+
+\begin{figure}[H]\n\centering\n\fbox{\rule{0pt}{2in} \rule{0.8\textwidth}{0pt}}\n\caption{The restored image using the Gaussian fit inverse response.}\n\end{figure}\n\n\hrule\vspace{0.5cm}
+
+\subsubsection{Compute and report the Mean Squared Error (MSE) between the original image and each reconstructed image and comment on which method gives better restoration and why.}
+
+\textbf{Solution:}
+
+The Mean Squared Error (MSE) between the original image $x$ and each reconstructed image $x_\text{recon}$ is calculated using the function $\text{mse}(x, x_\text{recon}) = \frac{1}{n} \sum_{i=1}^{n} (x_i - x_\text{recon, }i)^2$, where $n$ is the total number of pixels in the image.
+
+The MSE values are computed for each reconstructed image in the dictionary $\text{reconstructed_images}$ and stored in the $\text{mse_results}$ dictionary with their respective names. The results are then printed out, providing a measure of the difference between the original and reconstructed images.
+
+The method with the lower MSE value gives better restoration, as it indicates a smaller difference between the original and reconstructed images.
+
+\hrule\vspace{0.5cm}
+
+\end{document}
